@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panduan TypeMaster ID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:#1e1f22; --bg-card:#27282c; --bg-deep:#17181b; --border:#35363b;
+      --amber:#e2b714; --amber-glow:rgba(226,183,20,.2);
+      --wrong:#ca4754; --green:#57c484;
+      --text-dim:#646669; --text-muted:#9a9ba5;
+      --text-base:#d1d0c5; --text-bright:#e8e9f0;
+      --font-mono:'Roboto Mono',monospace;
+      --font:'Inter',sans-serif;
+      --r:10px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{font-size:16px;scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text-base);font-family:var(--font);
+      display:flex;min-height:100vh;}
+
+    /* SIDEBAR */
+    #sidebar{
+      width:260px;min-width:260px;background:var(--bg-deep);
+      border-right:1px solid var(--border);
+      padding:28px 0;position:sticky;top:0;height:100vh;overflow-y:auto;
+    }
+    .sidebar-logo{padding:0 24px 24px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+    .sidebar-logo h1{font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--text-bright);}
+    .sidebar-logo h1 span{color:var(--amber);}
+    .sidebar-logo p{font-size:.65rem;color:var(--text-dim);margin-top:4px;}
+    .nav-group{margin-bottom:8px;}
+    .nav-group-title{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--text-dim);padding:6px 24px;}
+    .nav-link{display:block;padding:7px 24px;font-size:.78rem;color:var(--text-muted);
+      text-decoration:none;border-left:2px solid transparent;
+      transition:color .12s,border-color .12s,background .12s;}
+    .nav-link:hover{color:var(--text-bright);background:rgba(255,255,255,.03);}
+    .nav-link.active{color:var(--amber);border-left-color:var(--amber);background:rgba(226,183,20,.06);}
+
+    /* CONTENT */
+    #content{flex:1;padding:48px 60px;max-width:860px;}
+
+    /* SECTIONS */
+    .section{margin-bottom:64px;}
+    .section-badge{display:inline-block;font-size:.6rem;letter-spacing:2px;
+      text-transform:uppercase;background:rgba(226,183,20,.12);
+      color:var(--amber);border:1px solid var(--amber);
+      padding:3px 10px;border-radius:20px;margin-bottom:12px;}
+    h2{font-size:1.6rem;font-weight:700;color:var(--text-bright);margin-bottom:8px;line-height:1.2;}
+    h3{font-size:1rem;font-weight:600;color:var(--text-bright);
+      margin:28px 0 10px;padding-left:12px;border-left:3px solid var(--amber);}
+    p{font-size:.88rem;line-height:1.8;color:var(--text-base);margin-bottom:12px;}
+    .lead{font-size:1rem;color:var(--text-muted);line-height:1.7;margin-bottom:20px;}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(226,183,20,.08) 100%);
+      border:1px solid var(--border);border-radius:var(--r);
+      padding:36px 40px;margin-bottom:40px;}
+    .hero h1{font-family:var(--font-mono);font-size:2rem;font-weight:700;
+      color:var(--text-bright);margin-bottom:8px;}
+    .hero h1 span{color:var(--amber);}
+    .hero p{font-size:.95rem;color:var(--text-muted);margin:0;}
+
+    /* CARDS */
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:16px 0;}
+    .card{background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--r);padding:18px 20px;}
+    .card-icon{font-size:1.6rem;margin-bottom:8px;}
+    .card-title{font-size:.82rem;font-weight:600;color:var(--text-bright);margin-bottom:5px;}
+    .card-desc{font-size:.72rem;color:var(--text-dim);line-height:1.6;}
+
+    /* STEPS */
+    .steps{counter-reset:step;margin:16px 0;}
+    .step{display:flex;gap:16px;margin-bottom:20px;align-items:flex-start;}
+    .step-num{counter-increment:step;min-width:32px;height:32px;
+      background:var(--amber);color:#111;font-family:var(--font-mono);
+      font-size:.78rem;font-weight:700;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;}
+    .step-num::before{content:counter(step);}
+    .step-body{flex:1;}
+    .step-title{font-size:.88rem;font-weight:600;color:var(--text-bright);margin-bottom:4px;}
+    .step-desc{font-size:.78rem;color:var(--text-muted);line-height:1.7;}
+
+    /* SHORTCUT TABLE */
+    .shortcut-table{width:100%;border-collapse:collapse;margin:12px 0;}
+    .shortcut-table th,.shortcut-table td{padding:10px 14px;
+      text-align:left;border-bottom:1px solid var(--border);font-size:.8rem;}
+    .shortcut-table th{color:var(--text-dim);font-weight:400;
+      letter-spacing:.5px;text-transform:uppercase;font-size:.65rem;}
+    .shortcut-table td{color:var(--text-base);}
+    .shortcut-table tr:hover td{background:rgba(255,255,255,.02);}
+    kbd{font-family:var(--font-mono);font-size:.72rem;background:var(--border);
+      padding:2px 8px;border-radius:4px;color:var(--text-bright);}
+
+    /* CALLOUT */
+    .callout{border-radius:var(--r);padding:14px 18px;margin:16px 0;font-size:.82rem;line-height:1.7;}
+    .callout.tip{background:rgba(87,196,132,.1);border-left:3px solid var(--green);color:var(--text-base);}
+    .callout.warn{background:rgba(202,71,84,.1);border-left:3px solid var(--wrong);color:var(--text-base);}
+    .callout.info{background:rgba(226,183,20,.08);border-left:3px solid var(--amber);color:var(--text-base);}
+    .callout strong{color:var(--text-bright);}
+
+    /* MODE TABLE */
+    .mode-table{width:100%;border-collapse:collapse;margin:12px 0;}
+    .mode-table th,.mode-table td{padding:11px 14px;
+      text-align:left;border-bottom:1px solid var(--border);font-size:.8rem;}
+    .mode-table th{color:var(--text-dim);font-weight:400;letter-spacing:.5px;
+      text-transform:uppercase;font-size:.65rem;background:var(--bg-deep);}
+    .mode-table td{color:var(--text-base);}
+    .mode-table tr:hover td{background:rgba(255,255,255,.02);}
+    .badge{display:inline-block;font-size:.6rem;padding:2px 8px;
+      border-radius:10px;font-family:var(--font-mono);font-weight:700;}
+    .badge.amber{background:rgba(226,183,20,.15);color:var(--amber);border:1px solid var(--amber);}
+    .badge.green{background:rgba(87,196,132,.15);color:var(--green);border:1px solid var(--green);}
+    .badge.blue{background:rgba(79,195,247,.15);color:#4fc3f7;border:1px solid #4fc3f7;}
+    .badge.pink{background:rgba(244,143,177,.15);color:#f48fb1;border:1px solid #f48fb1;}
+
+    /* RANK TABLE */
+    .rank-table{width:100%;border-collapse:collapse;margin:12px 0;}
+    .rank-table th,.rank-table td{padding:10px 14px;
+      border-bottom:1px solid var(--border);font-size:.8rem;}
+    .rank-table th{color:var(--text-dim);font-weight:400;text-transform:uppercase;
+      font-size:.65rem;letter-spacing:.5px;}
+    .rank-table .rank-name{font-weight:700;color:var(--amber);}
+
+    /* CODE BLOCK */
+    .formula{font-family:var(--font-mono);font-size:.82rem;
+      background:var(--bg-deep);border:1px solid var(--border);
+      padding:12px 16px;border-radius:var(--r);color:var(--amber);margin:12px 0;}
+
+    /* COLOR DOTS */
+    .color-dot{display:inline-block;width:12px;height:12px;
+      border-radius:50%;margin-right:6px;vertical-align:middle;}
+
+    /* DIVIDER */
+    hr{border:none;border-top:1px solid var(--border);margin:32px 0;}
+
+    /* BACK BUTTON */
+    .back-btn{display:inline-flex;align-items:center;gap:6px;
+      font-family:var(--font-mono);font-size:.72rem;color:var(--amber);
+      background:rgba(226,183,20,.08);border:1px solid var(--amber);
+      padding:7px 16px;border-radius:20px;text-decoration:none;margin-bottom:32px;
+      transition:background .12s;}
+    .back-btn:hover{background:rgba(226,183,20,.15);}
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar{width:5px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+    @media(max-width:768px){
+      #sidebar{display:none;}
+      #content{padding:28px 20px;}
+      h2{font-size:1.3rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <h1>TypeMaster<span>.</span>ID</h1>
+    <p>Buku Panduan Lengkap</p>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Mulai</div>
+    <a class="nav-link active" href="#mulai">Pengenalan</a>
+    <a class="nav-link" href="#cara-main">Cara Bermain</a>
+    <a class="nav-link" href="#shortcut">Shortcut Keyboard</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Mode</div>
+    <a class="nav-link" href="#mode-timer">⏱ Mode Timer</a>
+    <a class="nav-link" href="#mode-kata">📝 Mode Kata</a>
+    <a class="nav-link" href="#mode-kalimat">💬 Mode Kalimat</a>
+    <a class="nav-link" href="#mode-drill">🎯 Mode Drill</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Level</div>
+    <a class="nav-link" href="#level">Sistem Level</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Statistik</div>
+    <a class="nav-link" href="#kpm">KPM & Akurasi</a>
+    <a class="nav-link" href="#konsistensi">Konsistensi</a>
+    <a class="nav-link" href="#heatmap">Heat Map Keyboard</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Progres</div>
+    <a class="nav-link" href="#xp">XP & Pangkat</a>
+    <a class="nav-link" href="#pb">Personal Best</a>
+    <a class="nav-link" href="#streak">Streak Harian</a>
+    <a class="nav-link" href="#riwayat">Riwayat Sesi</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Kustomisasi</div>
+    <a class="nav-link" href="#tema">Tema Warna</a>
+    <a class="nav-link" href="#target">Target KPM</a>
+    <a class="nav-link" href="#sound">Sound Effect</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title">Lainnya</div>
+    <a class="nav-link" href="#export">Export Hasil</a>
+    <a class="nav-link" href="#tips">Tips Meningkat</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div id="content">
+  <a class="back-btn" href="index.html">← Kembali ke Game</a>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>TypeMaster<span>.</span>ID</h1>
+    <p>Panduan lengkap untuk memaksimalkan latihanmu dan menjadi pengetik yang lebih cepat dan akurat.</p>
+  </div>
+
+  <!-- ══ PENGENALAN ══ -->
+  <div class="section" id="mulai">
+    <div class="section-badge">Pengenalan</div>
+    <h2>Apa itu TypeMaster ID?</h2>
+    <p class="lead">TypeMaster ID adalah aplikasi latihan mengetik berbasis web yang dirancang khusus dalam bahasa Indonesia, dengan sistem progres, analisis mendalam, dan berbagai mode latihan.</p>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">⏱</div><div class="card-title">Mode Timer</div><div class="card-desc">Ketik sebanyak mungkin sebelum waktu habis</div></div>
+      <div class="card"><div class="card-icon">📝</div><div class="card-title">Mode Kata</div><div class="card-desc">Selesaikan sejumlah kata yang ditentukan</div></div>
+      <div class="card"><div class="card-icon">💬</div><div class="card-title">Mode Kalimat</div><div class="card-desc">Ketik kalimat motivasi bahasa Indonesia</div></div>
+      <div class="card"><div class="card-icon">🎯</div><div class="card-title">Mode Drill</div><div class="card-desc">Latih huruf yang paling sering kamu salah</div></div>
+      <div class="card"><div class="card-icon">📊</div><div class="card-title">Analisis Lengkap</div><div class="card-desc">Heat map, huruf lemah, konsistensi, grafik KPM</div></div>
+      <div class="card"><div class="card-icon">🏆</div><div class="card-title">Sistem Progres</div><div class="card-desc">XP, pangkat, personal best, streak harian</div></div>
+    </div>
+  </div>
+  <hr/>
+
+  <!-- ══ CARA MAIN ══ -->
+  <div class="section" id="cara-main">
+    <div class="section-badge">Panduan Dasar</div>
+    <h2>Cara Bermain</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Pilih mode dan level</div><div class="step-desc">Tentukan mode (Timer/Kata/Kalimat/Drill) dan level kesulitan (1–5) sesuai kemampuanmu saat ini.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Klik area kata</div><div class="step-desc">Klik kotak kata di tengah layar untuk memberi fokus pada input. Tulisan "klik untuk mulai" akan menghilang.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Mulai mengetik</div><div class="step-desc">Ketik huruf pertama — timer/stopwatch langsung berjalan otomatis. Tidak perlu klik tombol mulai.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Perhatikan warna huruf</div><div class="step-desc">Huruf <strong style="color:#e2b714">kuning</strong> = benar. Huruf <strong style="color:#ca4754">merah</strong> = salah dan harus diperbaiki. Huruf abu = belum diketik.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Tekan Spasi untuk lanjut kata</div><div class="step-desc">Setelah menyelesaikan satu kata, tekan Spasi untuk pindah ke kata berikutnya.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Lihat hasil</div><div class="step-desc">Game selesai otomatis (timer habis / kata cukup) atau klik tombol "lihat hasil" kapanpun kamu mau berhenti.</div></div></div>
+    </div>
+    <div class="callout tip"><strong>💡 Tips:</strong> Jangan terburu-buru di awal. Fokus pada akurasi dulu, kecepatan akan datang sendiri seiring latihan rutin.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ SHORTCUT ══ -->
+  <div class="section" id="shortcut">
+    <div class="section-badge">Keyboard</div>
+    <h2>Shortcut Keyboard</h2>
+    <table class="shortcut-table">
+      <thead><tr><th>Tombol</th><th>Fungsi</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Huruf/Angka</kbd></td><td>Mengetik karakter</td></tr>
+        <tr><td><kbd>Spasi</kbd></td><td>Submit kata dan lanjut ke kata berikutnya</td></tr>
+        <tr><td><kbd>Backspace</kbd></td><td>Hapus huruf terakhir. Di awal kata → kembali ke kata sebelumnya</td></tr>
+        <tr><td><kbd>Tab</kbd></td><td>Reset game langsung tanpa klik tombol</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>Submit kalimat (khusus Mode Kalimat)</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><strong>⚠ Perhatian:</strong> Pastikan Caps Lock tidak aktif. Banner merah akan muncul di atas layar sebagai peringatan jika Caps Lock menyala.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ MODE TIMER ══ -->
+  <div class="section" id="mode-timer">
+    <div class="section-badge">Mode</div>
+    <h2>⏱ Mode Timer</h2>
+    <p>Ketik kata sebanyak-banyaknya sebelum waktu habis. Cocok untuk mengukur kecepatan puncakmu.</p>
+    <table class="mode-table">
+      <thead><tr><th>Durasi</th><th>Cocok Untuk</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge amber">15 detik</span></td><td>Uji kecepatan sprint, pemanasan cepat</td></tr>
+        <tr><td><span class="badge amber">30 detik</span></td><td>Keseimbangan kecepatan dan stamina</td></tr>
+        <tr><td><span class="badge amber">60 detik</span></td><td>Standar latihan harian</td></tr>
+        <tr><td><span class="badge amber">120 detik</span></td><td>Uji stamina dan konsistensi jangka panjang</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info"><strong>ℹ Info:</strong> Angka di pojok kiri atas berubah jadi merah dan berkedip saat tersisa 5 detik sebagai peringatan.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ MODE KATA ══ -->
+  <div class="section" id="mode-kata">
+    <div class="section-badge">Mode</div>
+    <h2>📝 Mode Kata</h2>
+    <p>Game selesai setelah kamu berhasil menyelesaikan sejumlah kata yang ditentukan. Stopwatch berjalan naik, semakin cepat selesai semakin tinggi KPM-mu.</p>
+    <table class="mode-table">
+      <thead><tr><th>Jumlah Kata</th><th>Cocok Untuk</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge green">10 kata</span></td><td>Latihan singkat, uji reaksi</td></tr>
+        <tr><td><span class="badge green">25 kata</span></td><td>Latihan standar harian</td></tr>
+        <tr><td><span class="badge green">50 kata</span></td><td>Latihan menengah</td></tr>
+        <tr><td><span class="badge green">100 kata</span></td><td>Uji stamina dan akurasi panjang</td></tr>
+      </tbody>
+    </table>
+    <p>Display di kiri atas menunjukkan progress realtime, contoh: <strong style="color:var(--amber)">12/25</strong> artinya sudah 12 kata benar dari target 25.</p>
+  </div>
+  <hr/>
+
+  <!-- ══ MODE KALIMAT ══ -->
+  <div class="section" id="mode-kalimat">
+    <div class="section-badge">Mode</div>
+    <h2>💬 Mode Kalimat</h2>
+    <p>Satu kalimat motivasi bahasa Indonesia muncul penuh di area kata. Ketik seluruh kalimat dari awal sampai akhir, lalu tekan <kbd>Enter</kbd> untuk menyelesaikan.</p>
+    <div class="callout tip"><strong>💡 Tips:</strong> Mode ini sangat baik untuk melatih ritme mengetik kata panjang dan spasi di tengah kalimat. Kalimat berganti acak setiap kali reset.</div>
+    <div class="callout warn"><strong>⚠ Catatan:</strong> Di mode ini, <kbd>Spasi</kbd> tidak men-submit. Kamu perlu mengetik seluruh kalimat dulu baru tekan <kbd>Enter</kbd>.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ MODE DRILL ══ -->
+  <div class="section" id="mode-drill">
+    <div class="section-badge">Mode</div>
+    <h2>🎯 Mode Drill</h2>
+    <p>Mode latihan terfokus. Sistem membaca riwayat ketikanmu dan menampilkan huruf-huruf yang paling sering kamu salah ketik. Pilih huruf yang ingin dilatih, dan kata-kata yang muncul akan banyak mengandung huruf tersebut.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Mainkan beberapa sesi dulu</div><div class="step-desc">Mode Drill butuh data riwayat huruf. Mainkan minimal 2–3 sesi di mode lain agar sistem bisa menganalisis huruf lemahmu.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Pilih Mode Drill</div><div class="step-desc">Tombol-tombol huruf lemah akan muncul di samping mode selector, contoh: <code>r (34%)</code> artinya huruf R salah 34% dari semua ketikan.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Klik huruf yang ingin dilatih</div><div class="step-desc">Bisa pilih lebih dari satu huruf. Kata-kata yang muncul akan diprioritaskan mengandung huruf pilihanmu.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Selesaikan 25 kata</div><div class="step-desc">Mode Drill selesai setelah 25 kata benar. Hasilnya tersimpan dan akan memperbarui analisis huruf lemahmu.</div></div></div>
+    </div>
+  </div>
+  <hr/>
+
+  <!-- ══ LEVEL ══ -->
+  <div class="section" id="level">
+    <div class="section-badge">Kesulitan</div>
+    <h2>Sistem Level</h2>
+    <p>Ada 5 level kesulitan yang menentukan jenis kata yang muncul. Pilih level yang sesuai kemampuanmu, lalu naikkan secara bertahap.</p>
+    <table class="mode-table">
+      <thead><tr><th>Level</th><th>Nama</th><th>Isi Kata</th><th>Cocok Untuk</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge amber">Lv.1</span></td><td>Pemula</td><td>Kata 2–4 huruf: aku, ada, meja, buku</td><td>Baru mulai belajar mengetik</td></tr>
+        <tr><td><span class="badge green">Lv.2</span></td><td>Dasar</td><td>Kata umum 4–6 huruf: makan, rumah, sepatu</td><td>Sudah lancar huruf dasar</td></tr>
+        <tr><td><span class="badge blue">Lv.3</span></td><td>Menengah</td><td>Kata 6–9 huruf: belajar, komputer, Jakarta</td><td>Ingin meningkatkan kecepatan</td></tr>
+        <tr><td><span class="badge pink">Lv.4</span></td><td>Mahir</td><td>Kata panjang dan frasa: bertanggung jawab</td><td>Sudah cukup cepat, latih akurasi</td></tr>
+        <tr><td><span class="badge amber">Lv.5</span></td><td>Master</td><td>Kalimat kompleks penuh makna</td><td>Mengincar kecepatan dan akurasi tinggi</td></tr>
+      </tbody>
+    </table>
+    <div class="callout tip"><strong>💡 Rekomendasi:</strong> Mulai dari Lv.1 dan naik ke level berikutnya hanya jika akurasimu sudah konsisten di atas 95% pada level sekarang.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ KPM ══ -->
+  <div class="section" id="kpm">
+    <div class="section-badge">Statistik</div>
+    <h2>KPM & Akurasi</h2>
+    <h3>KPM (Karakter Per Menit)</h3>
+    <p>Mengukur seberapa banyak karakter yang berhasil kamu ketik dengan benar dalam satu menit.</p>
+    <div class="formula">KPM = Karakter Benar ÷ (Detik Berlalu ÷ 60)</div>
+    <p>Contoh: Kamu mengetik 240 karakter benar dalam 60 detik → KPM = 240 ÷ 1 = <strong style="color:var(--amber)">240 KPM</strong></p>
+    <table class="mode-table" style="margin-top:16px">
+      <thead><tr><th>KPM</th><th>Kategori</th></tr></thead>
+      <tbody>
+        <tr><td>0 – 100</td><td>Pemula — fokus pada akurasi dulu</td></tr>
+        <tr><td>100 – 200</td><td>Rata-rata — sudah cukup produktif</td></tr>
+        <tr><td>200 – 300</td><td>Mahir — di atas rata-rata pengguna umum</td></tr>
+        <tr><td>300 – 400</td><td>Ahli — level profesional</td></tr>
+        <tr><td>400+</td><td>Master — sangat langka</td></tr>
+      </tbody>
+    </table>
+    <h3>Akurasi</h3>
+    <p>Persentase ketikan yang benar dari total semua tombol yang ditekan, termasuk ketikan salah yang sudah dikoreksi.</p>
+    <div class="formula">Akurasi = (Ketikan Benar ÷ Total Ketikan) × 100%</div>
+    <div class="callout tip"><strong>💡 Target:</strong> Usahakan akurasi selalu di atas 95%. Akurasi rendah akan menurunkan KPM efektif dan tidak membangun muscle memory yang benar.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ KONSISTENSI ══ -->
+  <div class="section" id="konsistensi">
+    <div class="section-badge">Statistik</div>
+    <h2>Konsistensi</h2>
+    <p>Mengukur seberapa stabil kecepatanmu dari awal sampai akhir sesi. Nilai 100% berarti kecepatan tidak berubah sama sekali.</p>
+    <div class="formula">Konsistensi = 100% − (Standar Deviasi KPM ÷ Rata-rata KPM × 100%)</div>
+    <table class="mode-table" style="margin-top:12px">
+      <thead><tr><th>Nilai</th><th>Artinya</th></tr></thead>
+      <tbody>
+        <tr><td>90–100%</td><td>Sangat stabil — kecepatan merata sepanjang sesi</td></tr>
+        <tr><td>70–89%</td><td>Cukup stabil — ada sedikit naik-turun</td></tr>
+        <tr><td>50–69%</td><td>Kurang stabil — mungkin kelelahan atau hilang fokus</td></tr>
+        <tr><td>Di bawah 50%</td><td>Tidak stabil — perlu latihan ritme lebih banyak</td></tr>
+      </tbody>
+    </table>
+    <div class="callout info"><strong>ℹ Info:</strong> Konsistensi tinggi lebih berharga dari KPM tinggi sesaat. Pengetik profesional biasanya memiliki konsistensi di atas 85%.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ HEATMAP ══ -->
+  <div class="section" id="heatmap">
+    <div class="section-badge">Statistik</div>
+    <h2>Heat Map Keyboard</h2>
+    <p>Visualisasi keyboard QWERTY yang muncul di result card setelah sesi selesai. Setiap huruf diwarnai berdasarkan tingkat kesalahanmu:</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin:16px 0">
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#ca4754"></span><span style="font-size:.82rem">Merah = sering salah (error rate tinggi)</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#57c484"></span><span style="font-size:.82rem">Hijau = jarang salah (error rate rendah)</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#27282c;border:1px solid #35363b"></span><span style="font-size:.82rem">Abu = belum ada data</span></div>
+    </div>
+    <p>Persentase error juga ditampilkan di sudut bawah tiap tombol (muncul setelah minimal 3 kali mengetik huruf tersebut).</p>
+    <div class="callout tip"><strong>💡 Cara pakai:</strong> Lihat huruf mana yang paling merah, lalu gunakan Mode Drill untuk melatih huruf tersebut secara spesifik.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ XP ══ -->
+  <div class="section" id="xp">
+    <div class="section-badge">Progres</div>
+    <h2>XP & Pangkat</h2>
+    <p>Setiap sesi selesai kamu mendapat XP (Experience Points). Kumpulkan XP untuk naik pangkat.</p>
+    <div class="formula">XP = (KPM × 0.5) + (Kata Benar × 2) + Bonus</div>
+    <p>Bonus XP: <strong style="color:var(--amber)">+20 XP</strong> jika pecahkan Personal Best, <strong style="color:var(--green)">+10 XP</strong> jika akurasi ≥ 95%</p>
+    <table class="rank-table" style="margin-top:16px">
+      <thead><tr><th>Pangkat</th><th>Total XP Dibutuhkan</th></tr></thead>
+      <tbody>
+        <tr><td class="rank-name">Pemula</td><td>0 XP</td></tr>
+        <tr><td class="rank-name">Pelajar</td><td>100 XP</td></tr>
+        <tr><td class="rank-name">Terampil</td><td>300 XP</td></tr>
+        <tr><td class="rank-name">Mahir</td><td>600 XP</td></tr>
+        <tr><td class="rank-name">Ahli</td><td>1.000 XP</td></tr>
+        <tr><td class="rank-name">Pakar</td><td>1.500 XP</td></tr>
+        <tr><td class="rank-name">Master</td><td>2.200 XP</td></tr>
+        <tr><td class="rank-name">Legenda</td><td>3.000 XP</td></tr>
+      </tbody>
+    </table>
+    <p>Bar XP di header bergerak animasi setiap sesi. Saat naik pangkat, muncul notifikasi di bagian bawah layar.</p>
+  </div>
+  <hr/>
+
+  <!-- ══ PB ══ -->
+  <div class="section" id="pb">
+    <div class="section-badge">Progres</div>
+    <h2>Personal Best</h2>
+    <p>Rekor KPM terbaik tersimpan secara terpisah untuk setiap kombinasi <strong>Level + Mode + Nilai</strong>. Artinya rekor Lv.2 Timer 30s berbeda dengan Lv.2 Timer 60s.</p>
+    <p>Badge <strong style="color:var(--amber)">🏆 PB: xxx kpm</strong> muncul di atas area kata menampilkan rekor terbaikmu saat ini untuk kombinasi yang dipilih.</p>
+    <p>Saat rekor dipecahkan: konfetti berjatuhan, toast hijau muncul, fanfare berbunyi, dan flag <strong style="color:var(--amber)">🏆 Personal Best!</strong> muncul di result card.</p>
+  </div>
+  <hr/>
+
+  <!-- ══ STREAK ══ -->
+  <div class="section" id="streak">
+    <div class="section-badge">Progres</div>
+    <h2>Streak Harian 🔥</h2>
+    <p>Streak bertambah setiap hari kamu bermain minimal satu sesi. Ditampilkan di header dengan ikon 🔥.</p>
+    <div class="callout warn"><strong>⚠ Perhatian:</strong> Jika kamu melewatkan satu hari (tidak bermain sama sekali), streak akan reset ke 1. Usahakan latihan setiap hari meski hanya 5 menit.</div>
+    <div class="callout tip"><strong>💡 Tips:</strong> Gunakan Mode Timer 15 detik di hari-hari sibuk agar streak tetap terjaga tanpa menghabiskan banyak waktu.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ RIWAYAT ══ -->
+  <div class="section" id="riwayat">
+    <div class="section-badge">Progres</div>
+    <h2>Riwayat Sesi</h2>
+    <p>Tabel di bagian bawah halaman utama menyimpan 20 sesi terakhir. Setiap baris berisi: KPM, akurasi, konsistensi, level, mode, dan tanggal.</p>
+    <p>Baris dengan latar berbeda menandakan sesi tersebut adalah Personal Best pada saat itu (ditandai 🏆).</p>
+    <p>Klik tombol <strong style="color:var(--wrong)">hapus</strong> di samping judul untuk menghapus seluruh riwayat.</p>
+    <div class="callout info"><strong>ℹ Info:</strong> Semua data disimpan di browser kamu (localStorage). Data tidak akan hilang meski halaman ditutup, tapi akan hilang jika kamu menghapus data browser.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ TEMA ══ -->
+  <div class="section" id="tema">
+    <div class="section-badge">Kustomisasi</div>
+    <h2>Tema Warna</h2>
+    <p>Ada 5 pilihan tema di pojok kanan header. Klik lingkaran warna untuk mengganti tema secara instan.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin:16px 0">
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#e2b714"></span><span style="font-size:.82rem"><strong>Amber</strong> — default, kuning hangat</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#57c484"></span><span style="font-size:.82rem"><strong>Hijau</strong> — segar dan natural</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#4fc3f7"></span><span style="font-size:.82rem"><strong>Biru</strong> — sejuk dan fokus</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#f48fb1"></span><span style="font-size:.82rem"><strong>Pink</strong> — lembut dan elegan</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="color-dot" style="background:#f5f5f5;border:1px solid #ccc"></span><span style="font-size:.82rem"><strong>Terang</strong> — light mode</span></div>
+    </div>
+    <p>Pilihan tema tersimpan otomatis dan akan diingat saat kamu membuka game lagi.</p>
+  </div>
+  <hr/>
+
+  <!-- ══ TARGET ══ -->
+  <div class="section" id="target">
+    <div class="section-badge">Kustomisasi</div>
+    <h2>Target KPM 🎯</h2>
+    <p>Isi angka target KPM di kolom input bertuliskan "target kpm" di samping tombol sound. Saat game berjalan, progress bar kecil akan muncul menunjukkan seberapa dekat KPM realtime-mu ke target.</p>
+    <div class="callout tip"><strong>💡 Cara pakai:</strong> Set target 10–20% lebih tinggi dari KPM rata-ratamu sekarang. Ini zona optimal untuk peningkatan — cukup menantang tapi tidak mustahil.</div>
+  </div>
+  <hr/>
+
+  <!-- ══ SOUND ══ -->
+  <div class="section" id="sound">
+    <div class="section-badge">Kustomisasi</div>
+    <h2>Sound Effect 🔊</h2>
+    <p>Game memiliki tiga jenis suara:</p>
+    <table class="mode-table">
+      <thead><tr><th>Suara</th><th>Kapan Berbunyi</th></tr></thead>
+      <tbody>
+        <tr><td>Klik tipis</td><td>Setiap huruf yang diketik dengan benar</td></tr>
+        <tr><td>Bunyi rendah</td><td>Setiap huruf yang salah diketik</td></tr>
+        <tr><td>Fanfare 3 nada</td><td>Saat personal best dipecahkan</td></tr>
+      </tbody>
+    </table>
+    <p>Klik tombol 🔊 untuk mematikan suara (berubah jadi 🔇). Pengaturan ini <strong>tidak</strong> tersimpan — akan kembali aktif saat halaman di-refresh.</p>
+  </div>
+  <hr/>
+
+  <!-- ══ EXPORT ══ -->
+  <div class="section" id="export">
+    <div class="section-badge">Lainnya</div>
+    <h2>Export Hasil 📷</h2>
+    <p>Di result card setelah sesi selesai, ada tombol <strong>"simpan gambar"</strong>. Klik untuk mengunduh file PNG berisi ringkasan hasil sesimu: KPM, akurasi, konsistensi, kata benar, level, mode, dan tanggal.</p>
+    <p>File akan otomatis terunduh dengan nama <code>typemaster-result.png</code>. Bisa langsung di-share ke media sosial atau disimpan sebagai dokumentasi progresmu.</p>
+  </div>
+  <hr/>
+
+  <!-- ══ TIPS ══ -->
+  <div class="section" id="tips">
+    <div class="section-badge">Panduan Lanjut</div>
+    <h2>Tips Meningkat Cepat</h2>
+    <h3>Untuk Pemula (KPM di bawah 150)</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Prioritaskan akurasi, bukan kecepatan</div><div class="step-desc">Targetkan akurasi 98%+ dulu. Ketik pelan tapi benar. Kecepatan akan naik sendiri setelah posisi jari sudah benar di memori otot.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Jangan lihat keyboard</div><div class="step-desc">Latih mengetik tanpa melihat tangan. Awalnya sangat lambat dan frustasi — itu normal. Ini investasi terpenting untuk jangka panjang.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Mulai dari Lv.1 dengan timer 15 detik</div><div class="step-desc">Sesi pendek mengurangi kelelahan dan membuat lebih mudah konsisten latihan setiap hari.</div></div></div>
+    </div>
+    <h3>Untuk Menengah (KPM 150–250)</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Gunakan Mode Drill secara rutin</div><div class="step-desc">Lihat heat map keyboard setelah setiap sesi. Huruf merah adalah prioritas latihan. Drill 5 menit per hari untuk huruf lemah memberikan peningkatan yang signifikan.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Naikkan ke Lv.3–4 secara bertahap</div><div class="step-desc">Kata yang lebih panjang melatih jari untuk kombinasi huruf yang lebih variatif. Ini membuka bottleneck yang tidak terasa di kata pendek.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Perhatikan konsistensi</div><div class="step-desc">Kalau konsistensi di bawah 70%, kamu mengetik dengan "sprint lalu panik". Coba ketik lebih merata dari awal sampai akhir.</div></div></div>
+    </div>
+    <h3>Untuk Mahir (KPM 250+)</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Set target realistis dan kejar</div><div class="step-desc">Gunakan fitur target KPM. Set 10% di atas rata-ratamu dan kejar sampai tercapai sebelum menaikkan target lagi.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Mode Kalimat untuk akurasi spasi</div><div class="step-desc">Di KPM tinggi, spasi dan tanda baca sering jadi sumber kesalahan. Mode Kalimat melatih ritme kalimat penuh secara natural.</div></div></div>
+      <div class="step"><div class="step-num"></div><div class="step-body"><div class="step-title">Jaga streak dan latihan rutin</div><div class="step-desc">Di level ini, konsistensi latihan harian jauh lebih penting dari durasi satu sesi. 10 menit setiap hari lebih baik dari 2 jam seminggu sekali.</div></div></div>
+    </div>
+    <div class="callout tip"><strong>💡 Ingat:</strong> Rata-rata pengguna komputer mengetik 150–200 KPM. Di atas 300 KPM sudah masuk kategori sangat mahir. Nikmati prosesnya.</div>
+  </div>
+
+</div>
+
+<script>
+// Active nav link on scroll
+const sections = document.querySelectorAll('.section[id]');
+const navLinks  = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+current));
+});
+</script>
+</body>
+</html>

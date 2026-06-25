@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="amber">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TypeMaster ID</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- CAPS LOCK -->
+<div id="capslock-warn" class="hidden">⇪ Caps Lock Aktif</div>
+
+<!-- LEVEL UP TOAST -->
+<div id="levelup-toast" class="hidden"><span id="levelup-text"></span></div>
+
+<!-- PB TOAST -->
+<div id="pb-toast" class="hidden">🏆 Personal Best Baru!</div>
+
+<!-- CONFETTI CANVAS -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">TypeMaster<span class="accent">.</span><span class="logo-id">ID</span></div>
+  <div id="header-right">
+    <div id="streak-badge" title="Streak latihan harian">
+      <span>🔥</span>
+      <span id="streak-count">0</span>
+      <span class="streak-label">hari</span>
+    </div>
+    <div id="xp-wrap">
+      <div id="xp-label-row">
+        <span id="xp-rank">Pemula</span>
+        <span id="xp-val">0 / 100 XP</span>
+      </div>
+      <div id="xp-bar-bg"><div id="xp-bar-fill"></div></div>
+    </div>
+    <!-- Font selector -->
+    <div id="font-selector">
+      <button class="font-btn active" data-font="mono" title="Roboto Mono">Aa</button>
+      <button class="font-btn" data-font="jetbrains" title="JetBrains Mono">Aa</button>
+      <button class="font-btn" data-font="fira" title="Fira Code">Aa</button>
+      <button class="font-btn" data-font="serif" title="Georgia Serif">Aa</button>
+    </div>
+
+    <!-- Panduan button -->
+    <a href="panduan.html" target="_blank" id="guide-btn" title="Buku Panduan">?</a>
+
+    <!-- Theme selector -->
+    <div id="theme-selector">
+      <button class="theme-btn active" data-theme="amber" title="Amber">●</button>
+      <button class="theme-btn" data-theme="green"  title="Hijau">●</button>
+      <button class="theme-btn" data-theme="blue"   title="Biru">●</button>
+      <button class="theme-btn" data-theme="pink"   title="Pink">●</button>
+      <button class="theme-btn" data-theme="light"  title="Terang">○</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- MODE BAR -->
+  <div id="top-controls">
+    <div id="mode-selector">
+      <button class="mode-btn active" data-mode="timer">⏱ timer</button>
+      <button class="mode-btn" data-mode="words">📝 kata</button>
+      <button class="mode-btn" data-mode="quote">💬 kalimat</button>
+      <button class="mode-btn" data-mode="drill">🎯 drill</button>
+    </div>
+    <div id="sub-selector">
+      <div id="timer-options" class="sub-options active">
+        <button class="sub-btn active" data-value="15">15s</button>
+        <button class="sub-btn" data-value="30">30s</button>
+        <button class="sub-btn" data-value="60">60s</button>
+        <button class="sub-btn" data-value="120">120s</button>
+      </div>
+      <div id="words-options" class="sub-options">
+        <button class="sub-btn" data-value="10">10</button>
+        <button class="sub-btn active" data-value="25">25</button>
+        <button class="sub-btn" data-value="50">50</button>
+        <button class="sub-btn" data-value="100">100</button>
+      </div>
+      <div id="quote-options" class="sub-options">
+        <span class="sub-info">Ketik kalimat penuh lalu tekan Enter</span>
+      </div>
+      <div id="drill-options" class="sub-options">
+        <span class="sub-info" id="drill-hint">Selesaikan beberapa sesi untuk melihat huruf lemahmu</span>
+      </div>
+    </div>
+    <!-- Target KPM -->
+    <div id="target-wrap">
+      <label for="target-input">🎯</label>
+      <input id="target-input" type="number" min="0" max="999" placeholder="target kpm" />
+    </div>
+    <!-- Sound toggle -->
+    <button id="sound-btn" title="Sound">🔊</button>
+  </div>
+
+  <!-- LEVEL SELECTOR -->
+  <div id="level-selector">
+    <button class="level-btn active" data-level="1">Lv.1<span>Pemula</span></button>
+    <button class="level-btn" data-level="2">Lv.2<span>Dasar</span></button>
+    <button class="level-btn" data-level="3">Lv.3<span>Menengah</span></button>
+    <button class="level-btn" data-level="4">Lv.4<span>Mahir</span></button>
+    <button class="level-btn" data-level="5">Lv.5<span>Master</span></button>
+  </div>
+
+  <!-- LIVE ROW -->
+  <div id="live-row">
+    <div id="live-stat">
+      <span id="live-display">15</span>
+      <span id="live-unit">detik</span>
+    </div>
+    <div id="stats-bar">
+      <div class="stat"><span class="stat-value" id="wpm-display">0</span><span class="stat-label">kpm</span></div>
+      <div class="stat"><span class="stat-value" id="acc-display">100</span><span class="stat-label">akurasi %</span></div>
+      <div class="stat"><span class="stat-value" id="correct-display">0</span><span class="stat-label">kata benar</span></div>
+      <div class="stat"><span class="stat-value" id="wrong-display">0</span><span class="stat-label">ketikan salah</span></div>
+    </div>
+    <div id="pb-badge" class="hidden"><span>🏆</span><span id="pb-text">PB: 0 kpm</span></div>
+    <!-- Target progress -->
+    <div id="target-progress-wrap" class="hidden">
+      <div id="target-progress-bar-bg"><div id="target-progress-fill"></div></div>
+      <span id="target-progress-label">0 / 0 kpm</span>
+    </div>
+  </div>
+
+  <!-- LIVE MINI GRAPH -->
+  <div id="live-graph-wrap"><canvas id="live-graph"></canvas></div>
+
+  <!-- WORD AREA -->
+  <div id="word-area" aria-label="Kata yang harus diketik"></div>
+  <input id="typing-input" type="text" autocomplete="off"
+    autocorrect="off" autocapitalize="off" spellcheck="false"/>
+
+  <!-- CONTROLS -->
+  <div id="controls">
+    <button id="reset-btn">↺ reset <kbd>tab</kbd></button>
+    <button id="finish-btn">lihat hasil</button>
+  </div>
+
+  <!-- HISTORY TABLE -->
+  <div id="history-section">
+    <div class="section-title">Riwayat Sesi <span id="history-clear-btn">hapus</span></div>
+    <div id="history-table-wrap">
+      <table id="history-table">
+        <thead>
+          <tr><th>#</th><th>KPM</th><th>Akurasi</th><th>Konsistensi</th><th>Level</th><th>Mode</th><th>Waktu</th></tr>
+        </thead>
+        <tbody id="history-tbody"></tbody>
+      </table>
+      <div id="history-empty">Belum ada sesi</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- RESULT OVERLAY -->
+<div id="result-overlay" class="hidden">
+  <div id="result-card">
+    <div id="result-header">
+      <h2>Hasil</h2>
+      <div id="result-meta">
+        <span id="result-level-badge"></span>
+        <span id="result-mode-badge"></span>
+        <span id="result-pb-flag" class="hidden">🏆 Personal Best!</span>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="result-stat big"><span class="result-value" id="result-wpm">0</span><span class="result-label">kpm</span></div>
+      <div class="result-stat big"><span class="result-value" id="result-acc">0</span><span class="result-label">akurasi</span></div>
+      <div class="result-stat"><span class="result-value" id="result-correct">0</span><span class="result-label">kata benar</span></div>
+      <div class="result-stat"><span class="result-value" id="result-wrong">0</span><span class="result-label">ketikan salah</span></div>
+      <div class="result-stat"><span class="result-value" id="result-time">0</span><span class="result-label">detik</span></div>
+      <div class="result-stat"><span class="result-value" id="result-consistency">0%</span><span class="result-label">konsistensi</span></div>
+    </div>
+
+    <div id="chart-wrap"><canvas id="wpm-chart"></canvas></div>
+
+    <!-- Keyboard heatmap -->
+    <div id="heatmap-section">
+      <div class="section-title">Heat Map Keyboard</div>
+      <div id="keyboard-heatmap"></div>
+    </div>
+
+    <!-- Weak keys -->
+    <div id="weak-keys-section">
+      <div class="section-title">Huruf Lemah</div>
+      <div id="weak-keys-list"></div>
+    </div>
+
+    <!-- XP -->
+    <div id="xp-gained-wrap">
+      <span id="xp-gained-text">+0 XP</span>
+      <div id="result-xp-bar-bg"><div id="result-xp-bar-fill"></div></div>
+    </div>
+
+    <!-- Export -->
+    <div id="result-actions">
+      <button id="restart-btn">↺ ulangi</button>
+      <button id="export-btn">📷 simpan gambar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
